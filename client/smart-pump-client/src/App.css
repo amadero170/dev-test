@@ -1,0 +1,70 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.main {
+  display: flex;
+  flex-direction: row;
+}
+.container-welcome {
+  display: flex;
+  flex-direction: column;
+
+  width: 20vw;
+  justify-content: center;
+}
+.container-data {
+  display: flex;
+  flex-direction: column;
+
+  width: 40vw;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.logo {
+  width: 100%;
+  max-width: 400px;
+  min-width: 200px;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+ul li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.profile-pic-container {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+input {
+  width: 300px;
+}
+
+@media (max-width: 750px) {
+  .main {
+    flex-direction: column;
+    align-items: center;
+  }
+  .container-welcome {
+    padding: 0 20%;
+    width: 80%;
+  }
+}
