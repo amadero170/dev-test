@@ -10,7 +10,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   async function login() {
-    console.log("logging");
+
     setError("");
 
     // validate user
@@ -23,15 +23,14 @@ export default function Login() {
       body: JSON.stringify({ username, password }),
     });
 
+if (!res.ok){setError("Username or password incorrect")
+return}
     const user = await res.json();
 
     if (user && user._id) {
       setUser(user);
-      console.log(user);
       navigate("/");
-    } else {
-      setError("Username or password incorrect");
-    }
+    } 
   }
   function handleSubmit(event) {
     event.preventDefault();

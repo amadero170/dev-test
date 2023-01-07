@@ -5,7 +5,6 @@ import UserContext from "./context";
 export default function Home() {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-  console.log("home user", user);
 
   return (
     <>

@@ -10,33 +10,34 @@ export const getUsers = async () => {
   return users;
 };
 
-const createUser = async () => {
-  await db.read();
-  const { users } = db.data;
-  users.push({ nombre: "oli" });
-  await db.write();
-};
-
 export async function setUsers(updatedUser) {
   await db.read();
-  console.log(updatedUser);
-  const { users } = db.data;
-  console.log("setting new data");
+  const usersDb = db.data.users;
 
+  delete updatedUser.balance;
+  console.log(updatedUser);
   // if the updated user has undefined key, delete it
   Object.keys(updatedUser).forEach(
     (key) => updatedUser[key] === undefined && delete updatedUser[key]
   );
 
-  for (let i = 0; i < users.length; i++) {
-    if (users[i]._id === updatedUser._id) {
-      users[i] = {
-        ...users[i],
-        ...updatedUser,
-      };
+  const users = [];
+  usersDb.map((user) => {
+    if (user._id != updatedUser._id) {
+      users.push(user);
+    } else {
+      users.push({ ...user, ...updatedUser });
     }
-  }
+  });
 
   db.data = { users };
   await db.write();
 }
+
+export const getBalance = async (userId) => {
+  await db.read();
+  const { users } = db.data;
+  let balance = users.find((u) => u._id === userId).balance;
+
+  return balance;
+};
